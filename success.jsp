@@ -21,6 +21,7 @@
 	<c:if test="${sessionScope.emp != null}">
 		<h3>Your request was successful</h3>
 		<p>
+			ID : ${sessionScope.emp.empId}<br/>
 			Name : ${sessionScope.emp.name }<br/>	<!-- EL depends on JavaBeans conventions -->
 			Gender: ${sessionScope.emp.gender }<br/>
 			Designation : ${sessionScope.emp.designation }

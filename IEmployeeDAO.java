@@ -7,7 +7,7 @@ import com.cg.models.Employee;
 
 public interface IEmployeeDAO {
 	
-	void add(Employee e) throws EMSException;
+	int add(Employee e) throws EMSException;
 	
 	List<Employee> getAll() throws EMSException;
 	

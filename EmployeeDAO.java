@@ -19,7 +19,7 @@ public class EmployeeDAO implements IEmployeeDAO {
 			="select empid,ename,gender,designation,phone,email from emp2";
 	
 	@Override
-	public void add(Employee e) throws EMSException{
+	public int add(Employee e) throws EMSException{
 		try{
 			Connection con = DBUtil.obtainConnection();
 			PreparedStatement ps = con.prepareStatement(INSERT_QUERY);
@@ -29,7 +29,16 @@ public class EmployeeDAO implements IEmployeeDAO {
 			ps.setString(4,e.getPhone());
 			ps.setString(5, e.getEmail());
 			ps.executeUpdate();
+			int id =0;
+			//Get generated Primary key:
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery("select emp_seq2.currval from dual");
+			if(rs.next()){				
+				id = rs.getInt(1);
+				System.out.println("SEQ value "+id);
+			}
 			con.close();
+			return id;
 		}catch(NamingException | SQLException ex){
 			throw new EMSException("Unable to save, "+ex.getMessage());
 		}

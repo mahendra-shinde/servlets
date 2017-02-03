@@ -14,17 +14,13 @@ private IEmployeeDAO dao = null;
 		dao = new EmployeeDAO();
 	}
 	
-	
 	@Override
-	public void add(Employee e) throws EMSException {
-		
-		dao.add(e);
-
+	public int add(Employee e) throws EMSException {
+		return dao.add(e);
 	}
 
 	@Override
 	public List<Employee> getAll() throws EMSException {
-		
 		return dao.getAll();
 	}
 

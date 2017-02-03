@@ -60,10 +60,10 @@ public class EmployeeServlet extends HttpServlet {
 			e.setGender(request.getParameter("gender"));
 			e.setPhone(request.getParameter("phone"));
 			e.setEmail(request.getParameter("email"));
-			
 			//save using service
 			try{
-				service.add(e);
+				int id= service.add(e);
+				e.setEmpId(id);
 			}catch(EMSException ex){
 				request.getSession().setAttribute("error", ex.getMessage());
 			}
