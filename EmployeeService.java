@@ -25,8 +25,13 @@ private IEmployeeDAO dao = null;
 	}
 
 	@Override
-	public void update(Employee e) {
+	public void update(Employee e)throws EMSException {
 		dao.update(e);
 	}
+	
+	@Override
+		public Employee search(int empid) throws EMSException {
+			return dao.search(empid);
+		}
 
 }

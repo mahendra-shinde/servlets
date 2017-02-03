@@ -11,5 +11,7 @@ public interface IEmployeeDAO {
 	
 	List<Employee> getAll() throws EMSException;
 	
-	void update(Employee e);
+	void update(Employee e) throws EMSException;
+
+	Employee search(int empId)throws EMSException;
 }

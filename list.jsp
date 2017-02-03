@@ -31,6 +31,7 @@
 			<td>Designation</td>
 			<td>Phone</td>
 			<td>EMail</td>
+			<td>Edit</td>
 			</tr>
 		
 		<c:forEach items="${emplist }" var="e">
@@ -41,6 +42,11 @@
 			<td>${e.designation }</td>
 			<td>${e.phone }</td>
 			<td>${e.email }</td>
+			<td>
+				<a href="employees?action=edit&id=${e.empId}">edit</a>
+			</td>
+			
+			
 			</tr>
 			
 		</c:forEach>

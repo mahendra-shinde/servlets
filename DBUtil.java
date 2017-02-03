@@ -6,7 +6,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import com.cg.exception.MovieException;
+
 /*
  * DBUtil class to access a connection pool 
  */

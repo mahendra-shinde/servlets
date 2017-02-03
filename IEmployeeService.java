@@ -11,5 +11,7 @@ public interface IEmployeeService {
 	
 	List<Employee> getAll() throws EMSException;
 	
-	void update(Employee e);
+	void update(Employee e)throws EMSException;
+	
+	Employee search(int empid)throws EMSException;
 }

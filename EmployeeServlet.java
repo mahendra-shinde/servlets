@@ -39,6 +39,46 @@ public class EmployeeServlet extends HttpServlet {
 		IEmployeeService service = new EmployeeService();
 		
 		switch(action){
+		case "edit":
+			String empid = request.getParameter("id");
+			String error;
+			if(empid!=null){
+				try{
+				int id = Integer.parseInt(empid);
+				Employee e = service.search(id);
+				System.out.println("Employee found: "+e.getDesignation());
+				request.setAttribute("emp", e);
+				RequestDispatcher view = request.getRequestDispatcher("edit.jsp");
+				view.forward(request, response);
+				
+				}catch(EMSException ex){
+					error = "Cannot search employee id "+empid;
+					System.out.println("Error "+ex.getMessage());
+				}
+			}else{
+				error="Please select employee to edit";
+				response.sendRedirect("index.jsp?error="+error);						
+			}
+			return;
+		case "update":
+			Employee e = new Employee();
+			e.setName(request.getParameter("name"));
+			e.setDesignation(request.getParameter("designation"));
+			e.setGender(request.getParameter("gender"));
+			e.setPhone(request.getParameter("phone"));
+			e.setEmail(request.getParameter("email"));
+			String str = request.getParameter("empid");
+			e.setEmpId(Integer.parseInt(str));
+			try{
+			service.update(e);
+				request.setAttribute("message", "Record updated!");
+			}catch(EMSException ex){
+				request.setAttribute("error", "Unable to update, "+ex.getMessage());
+			}
+			RequestDispatcher view = request.getRequestDispatcher("index.jsp");
+			view.forward(request, response);
+			
+			return;
 		case "list":
 			try{
 			//code to list employees from service
@@ -49,26 +89,26 @@ public class EmployeeServlet extends HttpServlet {
 			}catch(EMSException ex){
 				request.getSession().setAttribute("error", ex.getMessage());
 			}
-			RequestDispatcher view = request.getRequestDispatcher("list.jsp");
-			view.forward(request, response);
+			RequestDispatcher view1 = request.getRequestDispatcher("list.jsp");
+			view1.forward(request, response);
 			return;
 		case "add":
 			//code to add employee
-			Employee e = new Employee();
-			e.setName(request.getParameter("name"));
-			e.setDesignation(request.getParameter("designation"));
-			e.setGender(request.getParameter("gender"));
-			e.setPhone(request.getParameter("phone"));
-			e.setEmail(request.getParameter("email"));
+			Employee e1 = new Employee();
+			e1.setName(request.getParameter("name"));
+			e1.setDesignation(request.getParameter("designation"));
+			e1.setGender(request.getParameter("gender"));
+			e1.setPhone(request.getParameter("phone"));
+			e1.setEmail(request.getParameter("email"));
 			//save using service
 			try{
-				int id= service.add(e);
-				e.setEmpId(id);
+				int id= service.add(e1);
+				e1.setEmpId(id);
 			}catch(EMSException ex){
 				request.getSession().setAttribute("error", ex.getMessage());
 			}
 			//store error/success message in SESSION
-			request.getSession().setAttribute("emp", e);
+			request.getSession().setAttribute("emp", e1);
 			
 			RequestDispatcher view2 = request.getRequestDispatcher("success.jsp");
 			view2.forward(request, response);
