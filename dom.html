@@ -1,0 +1,52 @@
+<html>
+<head>
+  <script type="text/javascript" src="scripts/jquery-1.11.3.min.js">
+  </script>
+
+
+  <script type="text/javascript" >
+    jQuery(document).ready(function() {
+          $("#m").hide();
+          $("#b").hide();
+
+          $("input[name='hq']").click(function(){
+                  var g = this.value; //Store value of Radio button
+
+                  if(g==="masters"){
+                    $("#m").show();
+                    $("#b").hide();
+
+                  }else {
+                    $("#m").hide();
+                    $("#b").show();
+
+                  }
+
+          });
+        });
+  </script>
+
+</head>
+
+<body>
+<form >
+    Highest Qualification: <input type="radio" name="hq" value="bachelors"/>Bachelors
+                          <input type="radio" name="hq" value="masters"/>Masters<br/>
+
+    <div id="options">
+    Course :
+          <span id="b">
+            <input type="radio" name="hq_bachelors" value="bsc"/>B. Sc.
+            <input type="radio" name="hq_bachelors" value="bscit"/>B. Sc. IT
+            <input type="radio" name="hq_bachelors" value="be"/>B. E.
+          </span>
+
+          <span id="m">
+            <input type="radio" name="hq_masters" value="msc"/>M. Sc.
+            <input type="radio" name="hq_masters" value="mca"/>M.C.A.
+            <input type="radio" name="hq_masters" value="mtech"/>M. Tech.
+          </span>
+    <div>
+</form>
+</body>
+</html>

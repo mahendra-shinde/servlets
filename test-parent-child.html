@@ -1,5 +1,19 @@
 <html>
 <head>
+<script type="text/javascript" src="scripts/jquery-1.11.3.min.js">
+</script>
+
+<script type="text/javascript">
+  $(function(){
+    //Every "P" who's NEXT to H2 and inside .article should disappear
+    $(".article>h2").next('p').hide();
+
+    $(".article>h2").click( function(){
+        $(this).next("p").toggle('slow');
+     } );
+  });
+</script>
+
   <style type="text/css">
     div.article{
       border: 2pt solid black;
