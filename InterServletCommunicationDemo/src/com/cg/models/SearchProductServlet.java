@@ -19,13 +19,7 @@ public class SearchProductServlet extends HttpServlet {
        
 	public void init()
 	{
-		List<Product> productList = new ArrayList<>();
-		productList.add(new Product(101,"McAloo",120F));
-		productList.add(new Product(102,"McTikki",180F));
-		productList.add(new Product(103,"Chicken Nuggets",220F));
-		//Add list of products in ServletContext (Application Scope)
-		getServletContext().setAttribute("productList", productList);
-		System.out.println("List of Sample products created !!");
+		
 	}
 	
     /**
